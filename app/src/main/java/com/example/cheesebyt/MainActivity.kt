@@ -12,9 +12,11 @@ class MainActivity : AppCompatActivity() {
     private lateinit var fragments: FrameLayout
 
     companion object {
-        const val HOME_ID = 123123
-        const val FAV_ID = 213213
-        const val SETTINGS_ID = 321321
+        const val FOR_YOU_ID = 111111
+        const val SEARCH_ID = 111112
+        const val CAMERA_ID = 111113
+        const val COMMUNITY_ID = 111114
+        const val PROFILE_ID = 111115
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,22 +27,27 @@ class MainActivity : AppCompatActivity() {
         bottomNav = findViewById(R.id.bnv_navigation)
 
         StateManager.buildInstance(
-            StateManagerBuilder(HOME_ID, FAV_ID, SETTINGS_ID)
+            StateManagerBuilder(FOR_YOU_ID, SEARCH_ID, CAMERA_ID, COMMUNITY_ID, PROFILE_ID)
                 .withSupportFragmentManager(supportFragmentManager)
                 .withViewGroup(fragments)
-        ).showOnNavigationClick(HOME_ID, HomeFirstFragment())
+        ).showOnNavigationClick(FOR_YOU_ID, HomeFirstFragment())
 
         bottomNav.setOnItemSelectedListener { item ->
             when (item.itemId) {
-                R.id.item_home -> StateManager.getInstance()
-                    .showOnNavigationClick(HOME_ID, HomeFirstFragment())
-                R.id.item_fav -> StateManager.getInstance()
-                    .showOnNavigationClick(FAV_ID, FavoriteFirstFragment())
-                R.id.item_settings -> StateManager.getInstance()
-                    .showOnNavigationClick(SETTINGS_ID, SettingsFirstFragment())
+                R.id.item_for_you -> StateManager.getInstance()
+                    .showOnNavigationClick(FOR_YOU_ID, HomeFirstFragment())
+                R.id.item_search -> StateManager.getInstance()
+                    .showOnNavigationClick(SEARCH_ID, FavoriteFirstFragment())
+                R.id.item_camera -> StateManager.getInstance()
+                    .showOnNavigationClick(CAMERA_ID, SettingsFirstFragment())
+                R.id.item_community -> StateManager.getInstance()
+                    .showOnNavigationClick(COMMUNITY_ID, PlaceholderFragment())
+                R.id.item_profile -> StateManager.getInstance()
+                    .showOnNavigationClick(COMMUNITY_ID, PlaceholderFragment())
             }
             return@setOnItemSelectedListener true
         }
+
     }
 
     override fun onDestroy() {

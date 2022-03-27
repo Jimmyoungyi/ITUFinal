@@ -1,6 +1,5 @@
 package com.example.cheesebyt
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,9 +9,9 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.eu.fragmentstatemanager.StateManager
-import com.example.cheesebyt.MainActivity.Companion.FAV_ID
-import com.example.cheesebyt.MainActivity.Companion.HOME_ID
-import com.example.cheesebyt.MainActivity.Companion.SETTINGS_ID
+import com.example.cheesebyt.MainActivity.Companion.SEARCH_ID
+import com.example.cheesebyt.MainActivity.Companion.FOR_YOU_ID
+import com.example.cheesebyt.MainActivity.Companion.CAMERA_ID
 
 
 abstract class BaseFragment : Fragment() {
@@ -42,7 +41,7 @@ class HomeFirstFragment : BaseFragment() {
 
         fragmentNameText.text = "HOME FRAGMENT 1"
         goDeeperButton.setOnClickListener {
-            StateManager.getInstance().showFragment(HOME_ID, HomeSecondFragment())
+            StateManager.getInstance().showFragment(FOR_YOU_ID, HomeSecondFragment())
         }
         goBackButton.visibility = GONE
     }
@@ -71,10 +70,10 @@ class HomeSecondFragment : BaseFragment() {
 
         fragmentNameText.text = "HOME FRAGMENT 2"
         goDeeperButton.setOnClickListener {
-            StateManager.getInstance().showFragment(HOME_ID, HomeThirdFragment())
+            StateManager.getInstance().showFragment(FOR_YOU_ID, HomeThirdFragment())
         }
         goBackButton.setOnClickListener {
-            StateManager.getInstance().fragmentOnBackPressed(HOME_ID)
+            StateManager.getInstance().fragmentOnBackPressed(FOR_YOU_ID)
         }
     }
 }
@@ -103,10 +102,10 @@ class HomeThirdFragment : BaseFragment() {
         fragmentNameText.text = "HOME FRAGMENT 3"
         goDeeperButton.text = "END TOUR OF HOME"
         goDeeperButton.setOnClickListener {
-            StateManager.getInstance().removeAllFragmentStream(HOME_ID, HomeFirstFragment())
+            StateManager.getInstance().removeAllFragmentStream(FOR_YOU_ID, HomeFirstFragment())
         }
         goBackButton.setOnClickListener {
-            StateManager.getInstance().fragmentOnBackPressed(HOME_ID)
+            StateManager.getInstance().fragmentOnBackPressed(FOR_YOU_ID)
         }
     }
 }
@@ -133,7 +132,7 @@ class FavoriteFirstFragment : BaseFragment() {
 
         fragmentNameText.text = "FAV FRAGMENT 1"
         goDeeperButton.setOnClickListener {
-            StateManager.getInstance().showFragment(FAV_ID, FavoriteSecondFragment())
+            StateManager.getInstance().showFragment(SEARCH_ID, FavoriteSecondFragment())
         }
         goBackButton.visibility = GONE
     }
@@ -162,10 +161,10 @@ class FavoriteSecondFragment : BaseFragment() {
 
         fragmentNameText.text = "FAV FRAGMENT 2"
         goDeeperButton.setOnClickListener {
-            StateManager.getInstance().showFragment(FAV_ID, FavoriteThirdFragment())
+            StateManager.getInstance().showFragment(SEARCH_ID, FavoriteThirdFragment())
         }
         goBackButton.setOnClickListener {
-            StateManager.getInstance().fragmentOnBackPressed(FAV_ID)
+            StateManager.getInstance().fragmentOnBackPressed(SEARCH_ID)
         }
     }
 }
@@ -194,10 +193,10 @@ class FavoriteThirdFragment : BaseFragment() {
         fragmentNameText.text = "FAV FRAGMENT 3"
         goDeeperButton.text = "END TOUR OF FAV"
         goDeeperButton.setOnClickListener {
-            StateManager.getInstance().removeAllFragmentStream(FAV_ID, FavoriteFirstFragment())
+            StateManager.getInstance().removeAllFragmentStream(SEARCH_ID, FavoriteFirstFragment())
         }
         goBackButton.setOnClickListener {
-            StateManager.getInstance().fragmentOnBackPressed(FAV_ID)
+            StateManager.getInstance().fragmentOnBackPressed(SEARCH_ID)
         }
     }
 }
@@ -224,7 +223,7 @@ class SettingsFirstFragment : BaseFragment() {
 
         fragmentNameText.text = "SETTINGS FRAGMENT 1"
         goDeeperButton.setOnClickListener {
-            StateManager.getInstance().showFragment(SETTINGS_ID, SettingsSecondFragment())
+            StateManager.getInstance().showFragment(CAMERA_ID, SettingsSecondFragment())
         }
         goBackButton.visibility = GONE
     }
@@ -253,10 +252,10 @@ class SettingsSecondFragment : BaseFragment() {
 
         fragmentNameText.text = "SETTINGS FRAGMENT 2"
         goDeeperButton.setOnClickListener {
-            StateManager.getInstance().showFragment(SETTINGS_ID, SettingsThirdFragment())
+            StateManager.getInstance().showFragment(CAMERA_ID, SettingsThirdFragment())
         }
         goBackButton.setOnClickListener {
-            StateManager.getInstance().fragmentOnBackPressed(SETTINGS_ID)
+            StateManager.getInstance().fragmentOnBackPressed(CAMERA_ID)
         }
     }
 }
@@ -285,10 +284,10 @@ class SettingsThirdFragment : BaseFragment() {
         fragmentNameText.text = "SETTINGS FRAGMENT 3"
         goDeeperButton.text = "END TOUR OF SETTINGS"
         goDeeperButton.setOnClickListener {
-            StateManager.getInstance().removeAllFragmentStream(SETTINGS_ID, SettingsFirstFragment())
+            StateManager.getInstance().removeAllFragmentStream(CAMERA_ID, SettingsFirstFragment())
         }
         goBackButton.setOnClickListener {
-            StateManager.getInstance().fragmentOnBackPressed(SETTINGS_ID)
+            StateManager.getInstance().fragmentOnBackPressed(CAMERA_ID)
         }
     }
 }

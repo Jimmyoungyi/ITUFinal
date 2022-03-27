@@ -14,8 +14,11 @@ import com.eu.fragmentstatemanager.StateManager
 import com.example.cheesebyt.HomeSecondFragment
 import com.example.cheesebyt.MainActivity
 import com.example.cheesebyt.MainActivity.Companion.cheeseType
+import com.example.cheesebyt.MainActivity.Companion.currentIndex
+import com.example.cheesebyt.MainActivity.Companion.searchIndex
 import com.example.cheesebyt.PlaceholderFragment
 import com.example.cheesebyt.R
+import com.example.cheesebyt.cheeseList.CheeseListFragment
 import com.example.cheesebyt.databinding.FragmentSearchBinding
 
 class SearchViewModel : ViewModel() {
@@ -53,11 +56,15 @@ class SearchFragment : Fragment() {
         _binding = FragmentSearchBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
+
         dashboardViewModel.cheeseTypeData.observe(viewLifecycleOwner) {
             binding.cheeseTypeList.adapter = CheeseTypeListAdapter(this.requireActivity(), it)
+
             binding.cheeseTypeList.setOnItemClickListener { _, _, position, _ ->
                 cheeseType = it[position].name
-                StateManager.getInstance().showFragment(MainActivity.SEARCH_ID, PlaceholderFragment())
+                searchIndex += 1
+                currentIndex = searchIndex
+                StateManager.getInstance().showFragment(MainActivity.SEARCH_ID, CheeseListFragment())
             }
         }
 

@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.FrameLayout
 import com.eu.fragmentstatemanager.StateManager
 import com.eu.fragmentstatemanager.StateManagerBuilder
+import com.example.cheesebyt.search.SearchFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
@@ -37,7 +38,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.item_for_you -> StateManager.getInstance()
                     .showOnNavigationClick(FOR_YOU_ID, HomeFirstFragment())
                 R.id.item_search -> StateManager.getInstance()
-                    .showOnNavigationClick(SEARCH_ID, FavoriteFirstFragment())
+                    .showOnNavigationClick(SEARCH_ID, SearchFragment())
                 R.id.item_camera -> StateManager.getInstance()
                     .showOnNavigationClick(CAMERA_ID, SettingsFirstFragment())
                 R.id.item_community -> StateManager.getInstance()

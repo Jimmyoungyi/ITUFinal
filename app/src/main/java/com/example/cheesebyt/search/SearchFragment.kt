@@ -10,6 +10,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.eu.fragmentstatemanager.StateManager
+import com.example.cheesebyt.HomeSecondFragment
+import com.example.cheesebyt.MainActivity
+import com.example.cheesebyt.MainActivity.Companion.cheeseType
+import com.example.cheesebyt.PlaceholderFragment
 import com.example.cheesebyt.R
 import com.example.cheesebyt.databinding.FragmentSearchBinding
 
@@ -50,8 +55,9 @@ class SearchFragment : Fragment() {
 
         dashboardViewModel.cheeseTypeData.observe(viewLifecycleOwner) {
             binding.cheeseTypeList.adapter = CheeseTypeListAdapter(this.requireActivity(), it)
-            binding.cheeseTypeList.setOnItemClickListener { _, _, _, _ ->
-
+            binding.cheeseTypeList.setOnItemClickListener { _, _, position, _ ->
+                cheeseType = it[position].name
+                StateManager.getInstance().showFragment(MainActivity.SEARCH_ID, PlaceholderFragment())
             }
         }
 

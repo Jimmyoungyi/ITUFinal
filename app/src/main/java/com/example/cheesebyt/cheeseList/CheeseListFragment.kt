@@ -10,14 +10,20 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.eu.fragmentstatemanager.StateManager
+import com.example.cheesebyt.MainActivity
+import com.example.cheesebyt.MainActivity.Companion.SEARCH_ID
 import com.example.cheesebyt.MainActivity.Companion.cheeseType
+import com.example.cheesebyt.MainActivity.Companion.currentIndex
+import com.example.cheesebyt.MainActivity.Companion.searchIndex
+import com.example.cheesebyt.cheese.CheeseFragment
 import com.example.cheesebyt.databinding.FragmentCheeseListBinding
 
 class CheeseListViewModel : ViewModel() {
     private val _cheeseListData = MutableLiveData<ArrayList<CheeseListItem>>().apply {
         value = arrayListOf(
             CheeseListItem(
-                "Cheddar Cheese",
+                "Cheddar",
                 "https://picsum.photos/360/180",
                 "https://picsum.photos/80/80",
                 4.50f,
@@ -53,11 +59,16 @@ class CheeseListFragment : Fragment() {
         _binding = FragmentCheeseListBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        Log.v("data", cheeseType)
 
+        Log.v("clickEvent", "binding is ready")
         dashboardViewModel.cheeseListData.observe(viewLifecycleOwner) {
             binding.cheeseList.adapter = CheeseListAdapter(this.requireActivity(), it)
+            Log.v("clickEvent", "item is ready")
             binding.cheeseList.setOnItemClickListener { _, _, position, _ ->
+                Log.v("clickEvent", "item is clicked")
+                searchIndex += 1
+                currentIndex = searchIndex
+                StateManager.getInstance().showFragment(SEARCH_ID, CheeseFragment())
             }
         }
 

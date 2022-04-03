@@ -10,13 +10,18 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.eu.fragmentstatemanager.StateManager
 import com.example.cheesebyt.MainActivity
+import com.example.cheesebyt.MainActivity.Companion.SEARCH_ID
+import com.example.cheesebyt.MainActivity.Companion.currentIndex
+import com.example.cheesebyt.MainActivity.Companion.searchIndex
 import com.example.cheesebyt.R
 import com.example.cheesebyt.cheeseList.CheeseListAdapter
 import com.example.cheesebyt.cheeseList.CheeseListItem
 import com.example.cheesebyt.cheeseList.CheeseListViewModel
 import com.example.cheesebyt.databinding.FragmentCheeseBinding
 import com.example.cheesebyt.databinding.FragmentCheeseListBinding
+import com.example.cheesebyt.review.ReviewPostFragment
 
 class CheeseViewModel : ViewModel() {
     private val _cheeseData = MutableLiveData<Cheese>().apply {
@@ -111,7 +116,13 @@ class CheeseFragment : Fragment() {
         _binding = FragmentCheeseBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
+
         dashboardViewModel.cheeseData.observe(viewLifecycleOwner) {
+            binding.btnWriteReview.setOnClickListener {
+                searchIndex += 1
+                currentIndex = searchIndex
+                StateManager.getInstance().showFragment(SEARCH_ID, ReviewPostFragment())
+            }
         }
 
         return root

@@ -59,13 +59,9 @@ class CheeseListFragment : Fragment() {
         _binding = FragmentCheeseListBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-
-        Log.v("clickEvent", "binding is ready")
         dashboardViewModel.cheeseListData.observe(viewLifecycleOwner) {
             binding.cheeseList.adapter = CheeseListAdapter(this.requireActivity(), it)
-            Log.v("clickEvent", "item is ready")
             binding.cheeseList.setOnItemClickListener { _, _, position, _ ->
-                Log.v("clickEvent", "item is clicked")
                 searchIndex += 1
                 currentIndex = searchIndex
                 StateManager.getInstance().showFragment(SEARCH_ID, CheeseFragment())

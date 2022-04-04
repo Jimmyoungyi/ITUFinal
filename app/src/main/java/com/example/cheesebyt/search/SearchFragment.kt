@@ -26,24 +26,20 @@ class SearchViewModel : ViewModel() {
 
     private val _cheeseTypeData = MutableLiveData<ArrayList<CheeseTypeListItem>>().apply {
         value = arrayListOf(
-            CheeseTypeListItem("Hard Cheese","https://picsum.photos/180/120"),
-            CheeseTypeListItem("Semi Hard Cheese","https://picsum.photos/180/120"),
-            CheeseTypeListItem("Blue Mode Cheese","https://picsum.photos/180/120"),
-            CheeseTypeListItem("White Mold Cheese","https://picsum.photos/180/120"),
-            CheeseTypeListItem("Fresh Cheese","https://picsum.photos/180/120"),
-            CheeseTypeListItem("Goat Cheese","https://picsum.photos/180/120")
+            CheeseTypeListItem("Hard Cheese", "https://picsum.photos/180/120"),
+            CheeseTypeListItem("Semi Hard Cheese", "https://picsum.photos/180/120"),
+            CheeseTypeListItem("Blue Mode Cheese", "https://picsum.photos/180/120"),
+            CheeseTypeListItem("White Mold Cheese", "https://picsum.photos/180/120"),
+            CheeseTypeListItem("Fresh Cheese", "https://picsum.photos/180/120"),
+            CheeseTypeListItem("Goat Cheese", "https://picsum.photos/180/120")
         )
     }
     val cheeseTypeData: LiveData<ArrayList<CheeseTypeListItem>> = _cheeseTypeData
 }
 
-
 class SearchFragment : Fragment() {
 
     private var _binding: FragmentSearchBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -57,7 +53,6 @@ class SearchFragment : Fragment() {
         _binding = FragmentSearchBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-
         dashboardViewModel.cheeseTypeData.observe(viewLifecycleOwner) {
             binding.cheeseTypeList.adapter = CheeseTypeListAdapter(this.requireActivity(), it)
 
@@ -66,7 +61,8 @@ class SearchFragment : Fragment() {
                 cheeseType = it[position].name
                 searchIndex += 1
                 currentIndex = searchIndex
-                StateManager.getInstance().showFragment(MainActivity.SEARCH_ID, CheeseListFragment())
+                StateManager.getInstance()
+                    .showFragment(MainActivity.SEARCH_ID, CheeseListFragment())
             }
         }
 

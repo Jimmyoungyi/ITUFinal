@@ -22,6 +22,7 @@ import com.example.cheesebyt.cheeseList.CheeseListViewModel
 import com.example.cheesebyt.databinding.FragmentCheeseBinding
 import com.example.cheesebyt.databinding.FragmentCheeseListBinding
 import com.example.cheesebyt.review.ReviewPostFragment
+import com.squareup.picasso.Picasso
 
 class CheeseViewModel : ViewModel() {
     private val _cheeseData = MutableLiveData<Cheese>().apply {
@@ -32,9 +33,7 @@ class CheeseViewModel : ViewModel() {
             4.8f,
             44.44f,
             "Celebrated in a wide span of culinary cultures, Gouda has its roots in the southern regions of the Netherlands. Typically made from cow’s milk, this semi-hard cheese is characterized by its aromatic and caramel-like flavor combined with its dense and springy texture. Hints of nuts with sweet and creamy notes embrace your palate in a graceful sensation and, depending on the age, the finish ranges from smooth to sharp.",
-            "In all aspects, Cheddar boasts immense versatility, meaning that the process of making it has endured many adoptions and variations. Common to all, however, is the process known as Cheddaring, in which loaves of curd are stacked on top of one another, causing excess whey to drain off. It is during this continual layering that the cheese begins to develop its characteristic flavor and texture.\n" +
-                    "\n" +
-                    "Depending on the type of Cheddar, aging will take a minimum of two months and up to two years for Castello Extra Mature Cheese. During this period, the texture goes from smooth to crumbly, while flavors take on notes of hazelnut, and sharpen in aftertaste.",
+            "In all aspects, Cheddar boasts immense versatility, meaning that the process of making it has endured many adoptions and variations. Common to all, however, is the process known as Cheddaring, in which loaves of curd are stacked on top of one another, causing excess whey to drain off. It is during this continual layering that the cheese begins to develop its characteristic flavor and texture.\n\nDepending on the type of Cheddar, aging will take a minimum of two months and up to two years for Castello Extra Mature Cheese. During this period, the texture goes from smooth to crumbly, while flavors take on notes of hazelnut, and sharpen in aftertaste.",
             arrayListOf(
                 SubSlideItem(
                     "https://picsum.photos/180/200",
@@ -118,11 +117,22 @@ class CheeseFragment : Fragment() {
 
 
         dashboardViewModel.cheeseData.observe(viewLifecycleOwner) {
+            Picasso.get().load(it.cheeseImage).into(binding.cheeseImage);
+            binding.cheeseRateText.text = it.cheeseRate.toString()
+            binding.cheeseRateBar.rating = it.cheeseRate
+            binding.cheesePrice.text = "$${it.cheesePrice.toString()}"
             binding.btnWriteReview.setOnClickListener {
                 searchIndex += 1
                 currentIndex = searchIndex
                 StateManager.getInstance().showFragment(SEARCH_ID, ReviewPostFragment())
             }
+            binding.cheeseName.text = it.cheeseName
+            binding.whatIsCheeseName.text = "WHAT IS ${it.cheeseName}"
+            binding.cheeseDescription.text = it.cheeseDescription
+
+            binding.cheeseWineList.adapter = CheeseWineListAdapter(it.wineParing)
+            binding.cheeseRecipeList.adapter = CheeseRecipeListAdapter(it.Recipes)
+
         }
 
         return root

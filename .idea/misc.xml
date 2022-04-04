@@ -7,7 +7,9 @@
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_fragments.xml" value="0.22554347826086957" />
         <entry key="app/src/main/res/layout/cheese_list_item.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/cheese_recipes_list_item.xml" value="0.3333333333333333" />
         <entry key="app/src/main/res/layout/cheese_type_list_item.xml" value="0.22554347826086957" />
+        <entry key="app/src/main/res/layout/cheese_wine_list.xml" value="0.3333333333333333" />
         <entry key="app/src/main/res/layout/fragment_cheese.xml" value="0.29606170654296876" />
         <entry key="app/src/main/res/layout/fragment_cheese_list.xml" value="0.17135416666666667" />
         <entry key="app/src/main/res/layout/fragment_placeholder.xml" value="0.22554347826086957" />

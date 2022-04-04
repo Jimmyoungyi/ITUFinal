@@ -32,7 +32,6 @@ class CheeseListAdapter (
         val cheeseDescription: TextView = view.findViewById(R.id.cheeseDescription)
 
         cheeseName.text = arrayList[position].cheeseName
-        Picasso.get().setLoggingEnabled(true)
         Picasso.get().load(arrayList[position].cheeseBkImage).into(cheeseBkImage);
         Picasso.get().load(arrayList[position].cheeseIconImage).into(cheeseIconImage);
         cheeseRate.rating = arrayList[position].cheeseRate

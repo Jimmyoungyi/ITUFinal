@@ -43,6 +43,7 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/cheesePrice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
@@ -50,7 +51,7 @@
                     android:textSize="24dp" />
 
                 <Button
-                    android:id="@+id/btn_write_review"
+                    android:id="@+id/btnWriteReview"
                     style="?android:attr/borderlessButtonStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -76,7 +77,7 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/cheeseName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="24dp"
@@ -85,7 +86,7 @@
                 android:textSize="32dp" />
 
             <TextView
-                android:id="@+id/textView4"
+                android:id="@+id/whatIsCheeseName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="24dp"
@@ -94,6 +95,7 @@
                 android:textSize="18dp" />
 
             <TextView
+                android:id="@+id/cheeseDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="24dp"
@@ -102,6 +104,7 @@
                 android:text="In all aspects, Cheddar boasts immense versatility, meaning that the process of making it has endured many adoptions and variations. Common to all, however, is the process known as Cheddaring, in which loaves of curd are stacked on top of one another, causing excess whey to drain off. It is during this continual layering that the cheese begins to develop its characteristic flavor and texture\n\nDepending on the type of Cheddar, aging will take a minimum of two months and up to two years for Castello Extra Mature Cheese. During this period, the texture goes from smooth to crumbly, while flavors take on notes of hazelnut, and sharpen in aftertaste." />
 
             <Button
+                android:id="@+id/btnLike"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Like"
@@ -110,6 +113,7 @@
                 />
 
             <Button
+                android:id="@+id/btnAdd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Add to Cart"
@@ -125,6 +129,7 @@
                 android:visibility="visible"/>
 
             <TextView
+                android:id="@+id/howCheeseNameIsMade"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="24dp"
@@ -133,12 +138,59 @@
                 android:textSize="18dp" />
 
             <TextView
+                android:id="@+id/cheeseHowto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="24dp"
                 android:layout_marginTop="12dp"
                 android:layout_marginRight="24dp"
                 android:text="In all aspects, Cheddar boasts immense versatility, meaning that the process of making it has endured many adoptions and variations. Common to all, however, is the process known as Cheddaring, in which loaves of curd are stacked on top of one another, causing excess whey to drain off. It is during this continual layering that the cheese begins to develop its characteristic flavor and texture.\n\nDepending on the type of Cheddar, aging will take a minimum of two months and up to two years for Castello Extra Mature Cheese. During this period, the texture goes from smooth to crumbly, while flavors take on notes of hazelnut, and sharpen in aftertaste." />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="24dp"
+                android:layout_marginTop="12dp"
+                android:background="#C4C4C4"
+                android:visibility="visible"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Wine Parings"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="24dp"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/cheeseWineList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/cheese_wine_list_item" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="24dp"
+                android:layout_marginTop="12dp"
+                android:background="#C4C4C4"
+                android:visibility="visible"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Recipes you might like"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="24dp"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/cheeseRecipeList"
+                android:layout_marginTop="12dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:orientation="horizontal"
+                tools:listitem="@layout/cheese_recipes_list_item"/>
 
             <View
                 android:layout_width="match_parent"
@@ -163,7 +215,7 @@
             app:layout_constraintTop_toBottomOf="@+id/cheeseImage">
 
             <RatingBar
-                android:id="@+id/floatRating"
+                android:id="@+id/cheeseRateBar"
                 style="@style/Widget.AppCompat.RatingBar.Small"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -174,9 +226,10 @@
                 android:layout_marginEnd="10dp" />
 
             <TextView
+                android:id="@+id/cheeseRateText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_above="@+id/floatRating"
+                android:layout_above="@+id/cheeseRateBar"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentEnd="true"
                 android:layout_marginBottom="12dp"

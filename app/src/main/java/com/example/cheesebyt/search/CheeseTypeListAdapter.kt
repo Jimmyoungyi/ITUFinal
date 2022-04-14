@@ -27,7 +27,7 @@ class CheeseTypeListAdapter (
         val textView: TextView = view.findViewById(R.id.cheeseTypeListItemText)
 
 
-        Picasso.get().load(arrayList[position].imgURL).into(imageView);
+        Picasso.get().load(arrayList[position].imgURL).into(imageView)
         textView.text = arrayList[position].name
 
 

@@ -1,23 +1,23 @@
 package com.example.cheesebyt.cheeseList
 
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.eu.fragmentstatemanager.StateManager
-import com.example.cheesebyt.MainActivity
 import com.example.cheesebyt.MainActivity.Companion.SEARCH_ID
-import com.example.cheesebyt.MainActivity.Companion.cheeseType
 import com.example.cheesebyt.MainActivity.Companion.currentIndex
+import com.example.cheesebyt.MainActivity.Companion.pageTitle
 import com.example.cheesebyt.MainActivity.Companion.searchIndex
 import com.example.cheesebyt.cheese.CheeseFragment
 import com.example.cheesebyt.databinding.FragmentCheeseListBinding
+
 
 class CheeseListViewModel : ViewModel() {
     private val _cheeseListData = MutableLiveData<ArrayList<CheeseListItem>>().apply {
@@ -53,6 +53,7 @@ class CheeseListFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        (context as AppCompatActivity).supportActionBar!!.title = pageTitle
         val dashboardViewModel =
             ViewModelProvider(this).get(CheeseListViewModel::class.java)
 
@@ -64,6 +65,7 @@ class CheeseListFragment : Fragment() {
             binding.cheeseList.setOnItemClickListener { _, _, position, _ ->
                 searchIndex += 1
                 currentIndex = searchIndex
+                pageTitle = it[position].cheeseName
                 StateManager.getInstance().showFragment(SEARCH_ID, CheeseFragment())
             }
         }

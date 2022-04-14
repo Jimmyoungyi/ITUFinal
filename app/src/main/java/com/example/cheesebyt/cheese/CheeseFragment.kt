@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -14,6 +15,7 @@ import com.eu.fragmentstatemanager.StateManager
 import com.example.cheesebyt.MainActivity
 import com.example.cheesebyt.MainActivity.Companion.SEARCH_ID
 import com.example.cheesebyt.MainActivity.Companion.currentIndex
+import com.example.cheesebyt.MainActivity.Companion.pageTitle
 import com.example.cheesebyt.MainActivity.Companion.searchIndex
 import com.example.cheesebyt.R
 import com.example.cheesebyt.cheeseList.CheeseListAdapter
@@ -109,6 +111,7 @@ class CheeseFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        (context as AppCompatActivity).supportActionBar!!.title = pageTitle
         val dashboardViewModel =
             ViewModelProvider(this).get(CheeseViewModel::class.java)
 

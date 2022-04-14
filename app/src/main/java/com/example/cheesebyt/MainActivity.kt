@@ -1,7 +1,9 @@
 package com.example.cheesebyt
 
 import android.app.Activity
+import android.app.AlertDialog
 import android.os.Bundle
+import android.util.Log
 import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.eu.fragmentstatemanager.StateManager
@@ -27,13 +29,14 @@ class MainActivity : AppCompatActivity() {
         const val PROFILE_ID = 111115
         var profileIndex: Int = 0
 
-        var cheeseType: String = ""
+        var pageTitle = "For You"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        setTitle("For You")
         fragments = findViewById(R.id.fl_fragments)
         bottomNav = findViewById(R.id.bnv_navigation)
 
@@ -84,23 +87,23 @@ class MainActivity : AppCompatActivity() {
     override fun onBackPressed() {
         if (currentIndex > 0) {
             StateManager.getInstance().fragmentOnBackPressed(currentPage)
-            if(currentPage == FOR_YOU_ID){
+            if (currentPage == FOR_YOU_ID) {
                 forYouIndex -= 1
                 currentIndex = forYouIndex
             }
-            if(currentPage == SEARCH_ID){
+            if (currentPage == SEARCH_ID) {
                 searchIndex -= 1
                 currentIndex = searchIndex
             }
-            if(currentPage == CAMERA_ID){
+            if (currentPage == CAMERA_ID) {
                 cameraIndex -= 1
                 currentIndex = cameraIndex
             }
-            if(currentPage == COMMUNITY_ID){
+            if (currentPage == COMMUNITY_ID) {
                 communityIndex -= 1
                 currentIndex = communityIndex
             }
-            if(currentPage == PROFILE_ID){
+            if (currentPage == PROFILE_ID) {
                 profileIndex -= 1
                 currentIndex = profileIndex
             }

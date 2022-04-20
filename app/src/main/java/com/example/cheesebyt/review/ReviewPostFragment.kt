@@ -13,8 +13,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.eu.fragmentstatemanager.StateManager
+import com.example.cheesebyt.MainActivity
+import com.example.cheesebyt.MainActivity.Companion.currentIndex
 import com.example.cheesebyt.MainActivity.Companion.pageTitle
+import com.example.cheesebyt.MainActivity.Companion.searchIndex
 import com.example.cheesebyt.R
+import com.example.cheesebyt.cheesePoint.CheesePointFragment
 import com.example.cheesebyt.databinding.FragmentReviewPostBinding
 import com.squareup.picasso.Picasso
 
@@ -77,8 +82,10 @@ class ReviewPostFragment : Fragment() {
 
         val collectButton = popView.findViewById<Button>(R.id.collectRewardBtn)
         collectButton.setOnClickListener {
-
-            Log.v("collectPoints","jump")
+            dialog.dismiss()
+            searchIndex += 1
+            currentIndex = searchIndex
+            StateManager.getInstance().showFragment(MainActivity.SEARCH_ID, CheesePointFragment())
         }
 
     }

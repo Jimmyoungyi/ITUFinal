@@ -11,6 +11,7 @@ import com.eu.fragmentstatemanager.StateManagerBuilder
 import com.example.cheesebyt.search.SearchFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
+
 class MainActivity : AppCompatActivity() {
     private lateinit var bottomNav: BottomNavigationView
     private lateinit var fragments: FrameLayout
@@ -36,9 +37,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
+
         setTitle("For You")
         fragments = findViewById(R.id.fl_fragments)
         bottomNav = findViewById(R.id.bnv_navigation)
+
+//        bottomNav.setItemIconTintList(null);
 
         StateManager.buildInstance(
             StateManagerBuilder(FOR_YOU_ID, SEARCH_ID, CAMERA_ID, COMMUNITY_ID, PROFILE_ID)

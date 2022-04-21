@@ -2,26 +2,26 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/item_for_you"
-        android:icon="@android:drawable/ic_menu_view"
+        android:icon="@drawable/for_you_selector"
         android:title="For You" />
 
     <item
         android:id="@+id/item_search"
-        android:icon="@android:drawable/ic_menu_search"
+        android:icon="@drawable/search_selector"
         android:title="Search" />
 
     <item
         android:id="@+id/item_camera"
-        android:icon="@android:drawable/ic_menu_camera"
+        android:icon="@drawable/camera_selector"
         android:title="Camera" />
 
     <item
         android:id="@+id/item_community"
-        android:icon="@android:drawable/ic_menu_gallery"
+        android:icon="@drawable/community_selector"
         android:title="Community" />
 
     <item
         android:id="@+id/item_profile"
-        android:icon="@android:drawable/ic_menu_agenda"
+        android:icon="@drawable/profile_selector"
         android:title="Profile" />
 </menu>

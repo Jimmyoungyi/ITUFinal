@@ -11,6 +11,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.eu.fragmentstatemanager.StateManager
+import com.example.cheesebyt.MainActivity
 import com.example.cheesebyt.MainActivity.Companion.SEARCH_ID
 import com.example.cheesebyt.MainActivity.Companion.currentIndex
 import com.example.cheesebyt.MainActivity.Companion.pageTitle
@@ -53,6 +54,7 @@ class CheeseListFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        pageTitle = searchIndex.last()
         (context as AppCompatActivity).supportActionBar!!.title = pageTitle
         val dashboardViewModel =
             ViewModelProvider(this).get(CheeseListViewModel::class.java)
@@ -63,14 +65,22 @@ class CheeseListFragment : Fragment() {
         dashboardViewModel.cheeseListData.observe(viewLifecycleOwner) {
             binding.cheeseList.adapter = CheeseListAdapter(this.requireActivity(), it)
             binding.cheeseList.setOnItemClickListener { _, _, position, _ ->
-                searchIndex += 1
-                currentIndex = searchIndex
+                searchIndex.add(it[position].cheeseName)
+                currentIndex = searchIndex.size - 1
                 pageTitle = it[position].cheeseName
                 StateManager.getInstance().showFragment(SEARCH_ID, CheeseFragment())
             }
         }
 
         return root
+    }
+
+    override fun onHiddenChanged(hidden: Boolean) {
+        super.onHiddenChanged(hidden)
+        if (!hidden) {
+            pageTitle = searchIndex.last()
+            (context as AppCompatActivity).supportActionBar!!.title = pageTitle
+        }
     }
 
     override fun onDestroyView() {

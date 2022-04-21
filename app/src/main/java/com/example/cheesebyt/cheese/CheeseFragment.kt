@@ -111,6 +111,7 @@ class CheeseFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        pageTitle = searchIndex.last()
         (context as AppCompatActivity).supportActionBar!!.title = pageTitle
         val dashboardViewModel =
             ViewModelProvider(this).get(CheeseViewModel::class.java)
@@ -118,15 +119,14 @@ class CheeseFragment : Fragment() {
         _binding = FragmentCheeseBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-
         dashboardViewModel.cheeseData.observe(viewLifecycleOwner) {
             Picasso.get().load(it.cheeseImage).into(binding.cheeseImage);
             binding.cheeseRateText.text = it.cheeseRate.toString()
             binding.cheeseRateBar.rating = it.cheeseRate
             binding.cheesePrice.text = "$${it.cheesePrice.toString()}"
             binding.btnWriteReview.setOnClickListener {
-                searchIndex += 1
-                currentIndex = searchIndex
+                searchIndex.add("Add Review")
+                currentIndex = searchIndex.size - 1
                 StateManager.getInstance().showFragment(SEARCH_ID, ReviewPostFragment())
             }
             binding.cheeseName.text = it.cheeseName
@@ -139,6 +139,14 @@ class CheeseFragment : Fragment() {
         }
 
         return root
+    }
+
+    override fun onHiddenChanged(hidden: Boolean) {
+        super.onHiddenChanged(hidden)
+        if (!hidden) {
+            pageTitle = searchIndex.last()
+            (context as AppCompatActivity).supportActionBar!!.title = pageTitle
+        }
     }
 
     override fun onDestroyView() {

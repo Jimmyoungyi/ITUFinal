@@ -45,6 +45,7 @@ class SearchFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        pageTitle = searchIndex.last()
         (context as AppCompatActivity).supportActionBar!!.title = pageTitle
         val dashboardViewModel =
             ViewModelProvider(this).get(SearchViewModel::class.java)
@@ -56,8 +57,8 @@ class SearchFragment : Fragment() {
             binding.cheeseTypeList.adapter = CheeseTypeListAdapter(this.requireActivity(), it)
 
             binding.cheeseTypeList.setOnItemClickListener { _, _, position, _ ->
-                searchIndex += 1
-                currentIndex = searchIndex
+                searchIndex.add(it[position].name)
+                currentIndex = searchIndex.size - 1
                 pageTitle = it[position].name
                 StateManager.getInstance()
                     .showFragment(MainActivity.SEARCH_ID, CheeseListFragment())
@@ -65,6 +66,14 @@ class SearchFragment : Fragment() {
         }
 
         return root
+    }
+
+    override fun onHiddenChanged(hidden: Boolean) {
+        super.onHiddenChanged(hidden)
+        if (!hidden) {
+            pageTitle = searchIndex.last()
+            (context as AppCompatActivity).supportActionBar!!.title = pageTitle
+        }
     }
 
     override fun onDestroyView() {

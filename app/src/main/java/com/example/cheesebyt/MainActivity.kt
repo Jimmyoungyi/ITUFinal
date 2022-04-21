@@ -1,9 +1,6 @@
 package com.example.cheesebyt
 
-import android.app.Activity
-import android.app.AlertDialog
 import android.os.Bundle
-import android.util.Log
 import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.eu.fragmentstatemanager.StateManager
@@ -20,9 +17,9 @@ class MainActivity : AppCompatActivity() {
         var currentPage: Int = 111111
         var currentIndex: Int = 0
         const val FOR_YOU_ID = 111111
-        var forYouIndex: Int = 0
+        var forYouIndex: ArrayList<String> = arrayListOf("For You")
         const val SEARCH_ID = 111112
-        var searchIndex: Int = 0
+        var searchIndex: ArrayList<String> = arrayListOf("Search")
         const val CAMERA_ID = 111113
         var cameraIndex: Int = 0
         const val COMMUNITY_ID = 111114
@@ -37,13 +34,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
-
-        setTitle("For You")
         fragments = findViewById(R.id.fl_fragments)
         bottomNav = findViewById(R.id.bnv_navigation)
-
-//        bottomNav.setItemIconTintList(null);
 
         StateManager.buildInstance(
             StateManagerBuilder(FOR_YOU_ID, SEARCH_ID, CAMERA_ID, COMMUNITY_ID, PROFILE_ID)
@@ -57,13 +49,13 @@ class MainActivity : AppCompatActivity() {
                     StateManager.getInstance()
                         .showOnNavigationClick(FOR_YOU_ID, HomeFirstFragment())
                     currentPage = FOR_YOU_ID
-                    currentIndex = forYouIndex
+                    currentIndex = forYouIndex.size - 1
                 }
                 R.id.item_search -> {
                     StateManager.getInstance()
                         .showOnNavigationClick(SEARCH_ID, SearchFragment())
                     currentPage = SEARCH_ID
-                    currentIndex = searchIndex
+                    currentIndex = searchIndex.size -1
                 }
                 R.id.item_camera -> {
                     StateManager.getInstance()
@@ -90,15 +82,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
+
         if (currentIndex > 0) {
             StateManager.getInstance().fragmentOnBackPressed(currentPage)
             if (currentPage == FOR_YOU_ID) {
-                forYouIndex -= 1
-                currentIndex = forYouIndex
+                forYouIndex.removeLast()
+                currentIndex = forYouIndex.size - 1
             }
             if (currentPage == SEARCH_ID) {
-                searchIndex -= 1
-                currentIndex = searchIndex
+                searchIndex.removeLast()
+                currentIndex = searchIndex.size - 1
             }
             if (currentPage == CAMERA_ID) {
                 cameraIndex -= 1

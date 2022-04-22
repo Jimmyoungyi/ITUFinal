@@ -40,6 +40,7 @@ class ReviewPostFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        currentIndex.add("Add Review")
         (context as AppCompatActivity).supportActionBar!!.title = currentIndex.last()
         val dashboardViewModel =
             ViewModelProvider(this).get(ReviewViewModel::class.java)

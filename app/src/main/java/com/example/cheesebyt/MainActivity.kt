@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.eu.fragmentstatemanager.StateManager
 import com.eu.fragmentstatemanager.StateManagerBuilder
 import com.example.cheesebyt.forYou.ForYouFragment
+import com.example.cheesebyt.profile.ProfileFragment
 import com.example.cheesebyt.search.SearchFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -71,7 +72,7 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.item_profile -> {
                     StateManager.getInstance()
-                        .showOnNavigationClick(PROFILE_ID, PlaceholderFragment())
+                        .showOnNavigationClick(PROFILE_ID, ProfileFragment())
                     currentPage = PROFILE_ID
                     currentIndex = profileIndex
                 }

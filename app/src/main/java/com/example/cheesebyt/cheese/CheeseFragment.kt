@@ -117,8 +117,6 @@ class CheeseFragment : Fragment() {
             binding.cheeseRateBar.rating = it.cheeseRate
             binding.cheesePrice.text = "$${it.cheesePrice.toString()}"
             binding.btnWriteReview.setOnClickListener {
-                searchIndex.add("Add Review")
-                currentIndex = searchIndex
                 StateManager.getInstance().showFragment(SEARCH_ID, ReviewPostFragment())
             }
             binding.cheeseName.text = it.cheeseName

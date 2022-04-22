@@ -5,6 +5,7 @@ import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.eu.fragmentstatemanager.StateManager
 import com.eu.fragmentstatemanager.StateManagerBuilder
+import com.example.cheesebyt.forYou.ForYouFragment
 import com.example.cheesebyt.search.SearchFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -14,20 +15,19 @@ class MainActivity : AppCompatActivity() {
     private lateinit var fragments: FrameLayout
 
     companion object {
-        var currentPage: Int = 111111
-        var currentIndex: Int = 0
         const val FOR_YOU_ID = 111111
         var forYouIndex: ArrayList<String> = arrayListOf("For You")
         const val SEARCH_ID = 111112
         var searchIndex: ArrayList<String> = arrayListOf("Search")
         const val CAMERA_ID = 111113
-        var cameraIndex: Int = 0
+        var cameraIndex: ArrayList<String> = arrayListOf("Camera")
         const val COMMUNITY_ID = 111114
-        var communityIndex: Int = 0
+        var communityIndex: ArrayList<String> = arrayListOf("Community")
         const val PROFILE_ID = 111115
-        var profileIndex: Int = 0
+        var profileIndex: ArrayList<String> = arrayListOf("Profile")
 
-        var pageTitle = "For You"
+        var currentPage: Int = 111111
+        var currentIndex: ArrayList<String> = forYouIndex
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,21 +41,21 @@ class MainActivity : AppCompatActivity() {
             StateManagerBuilder(FOR_YOU_ID, SEARCH_ID, CAMERA_ID, COMMUNITY_ID, PROFILE_ID)
                 .withSupportFragmentManager(supportFragmentManager)
                 .withViewGroup(fragments)
-        ).showOnNavigationClick(FOR_YOU_ID, HomeFirstFragment())
+        ).showOnNavigationClick(FOR_YOU_ID, ForYouFragment())
 
         bottomNav.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.item_for_you -> {
                     StateManager.getInstance()
-                        .showOnNavigationClick(FOR_YOU_ID, HomeFirstFragment())
+                        .showOnNavigationClick(FOR_YOU_ID, ForYouFragment())
                     currentPage = FOR_YOU_ID
-                    currentIndex = forYouIndex.size - 1
+                    currentIndex = forYouIndex
                 }
                 R.id.item_search -> {
                     StateManager.getInstance()
                         .showOnNavigationClick(SEARCH_ID, SearchFragment())
                     currentPage = SEARCH_ID
-                    currentIndex = searchIndex.size -1
+                    currentIndex = searchIndex
                 }
                 R.id.item_camera -> {
                     StateManager.getInstance()
@@ -83,27 +83,22 @@ class MainActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
 
-        if (currentIndex > 0) {
+        if (currentIndex.size > 1) {
             StateManager.getInstance().fragmentOnBackPressed(currentPage)
             if (currentPage == FOR_YOU_ID) {
                 forYouIndex.removeLast()
-                currentIndex = forYouIndex.size - 1
             }
             if (currentPage == SEARCH_ID) {
                 searchIndex.removeLast()
-                currentIndex = searchIndex.size - 1
             }
             if (currentPage == CAMERA_ID) {
-                cameraIndex -= 1
-                currentIndex = cameraIndex
+                cameraIndex.removeLast()
             }
             if (currentPage == COMMUNITY_ID) {
-                communityIndex -= 1
-                currentIndex = communityIndex
+                communityIndex.removeLast()
             }
             if (currentPage == PROFILE_ID) {
-                profileIndex -= 1
-                currentIndex = profileIndex
+                profileIndex.removeLast()
             }
         }
     }

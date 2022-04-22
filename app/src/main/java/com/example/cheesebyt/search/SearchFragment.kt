@@ -1,7 +1,6 @@
 package com.example.cheesebyt.search
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +13,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.eu.fragmentstatemanager.StateManager
 import com.example.cheesebyt.MainActivity
 import com.example.cheesebyt.MainActivity.Companion.currentIndex
-import com.example.cheesebyt.MainActivity.Companion.pageTitle
 import com.example.cheesebyt.MainActivity.Companion.searchIndex
 import com.example.cheesebyt.cheeseList.CheeseListFragment
 import com.example.cheesebyt.databinding.FragmentSearchBinding
@@ -45,8 +43,7 @@ class SearchFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        pageTitle = searchIndex.last()
-        (context as AppCompatActivity).supportActionBar!!.title = pageTitle
+        (context as AppCompatActivity).supportActionBar!!.title = currentIndex.last()
         val dashboardViewModel =
             ViewModelProvider(this).get(SearchViewModel::class.java)
 
@@ -57,9 +54,7 @@ class SearchFragment : Fragment() {
             binding.cheeseTypeList.adapter = CheeseTypeListAdapter(this.requireActivity(), it)
 
             binding.cheeseTypeList.setOnItemClickListener { _, _, position, _ ->
-                searchIndex.add(it[position].name)
-                currentIndex = searchIndex.size - 1
-                pageTitle = it[position].name
+                currentIndex.add(it[position].name)
                 StateManager.getInstance()
                     .showFragment(MainActivity.SEARCH_ID, CheeseListFragment())
             }
@@ -71,8 +66,7 @@ class SearchFragment : Fragment() {
     override fun onHiddenChanged(hidden: Boolean) {
         super.onHiddenChanged(hidden)
         if (!hidden) {
-            pageTitle = searchIndex.last()
-            (context as AppCompatActivity).supportActionBar!!.title = pageTitle
+            (context as AppCompatActivity).supportActionBar!!.title = currentIndex.last()
         }
     }
 

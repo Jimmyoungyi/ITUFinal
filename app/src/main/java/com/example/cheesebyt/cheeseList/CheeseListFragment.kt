@@ -11,10 +11,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.eu.fragmentstatemanager.StateManager
-import com.example.cheesebyt.MainActivity
 import com.example.cheesebyt.MainActivity.Companion.SEARCH_ID
 import com.example.cheesebyt.MainActivity.Companion.currentIndex
-import com.example.cheesebyt.MainActivity.Companion.pageTitle
 import com.example.cheesebyt.MainActivity.Companion.searchIndex
 import com.example.cheesebyt.cheese.CheeseFragment
 import com.example.cheesebyt.databinding.FragmentCheeseListBinding
@@ -54,8 +52,7 @@ class CheeseListFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        pageTitle = searchIndex.last()
-        (context as AppCompatActivity).supportActionBar!!.title = pageTitle
+        (context as AppCompatActivity).supportActionBar!!.title = currentIndex.last()
         val dashboardViewModel =
             ViewModelProvider(this).get(CheeseListViewModel::class.java)
 
@@ -65,9 +62,7 @@ class CheeseListFragment : Fragment() {
         dashboardViewModel.cheeseListData.observe(viewLifecycleOwner) {
             binding.cheeseList.adapter = CheeseListAdapter(this.requireActivity(), it)
             binding.cheeseList.setOnItemClickListener { _, _, position, _ ->
-                searchIndex.add(it[position].cheeseName)
-                currentIndex = searchIndex.size - 1
-                pageTitle = it[position].cheeseName
+                currentIndex.add(it[position].cheeseName)
                 StateManager.getInstance().showFragment(SEARCH_ID, CheeseFragment())
             }
         }
@@ -78,8 +73,7 @@ class CheeseListFragment : Fragment() {
     override fun onHiddenChanged(hidden: Boolean) {
         super.onHiddenChanged(hidden)
         if (!hidden) {
-            pageTitle = searchIndex.last()
-            (context as AppCompatActivity).supportActionBar!!.title = pageTitle
+            (context as AppCompatActivity).supportActionBar!!.title = currentIndex.last()
         }
     }
 

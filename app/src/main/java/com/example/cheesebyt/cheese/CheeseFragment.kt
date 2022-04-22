@@ -12,17 +12,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.eu.fragmentstatemanager.StateManager
-import com.example.cheesebyt.MainActivity
 import com.example.cheesebyt.MainActivity.Companion.SEARCH_ID
 import com.example.cheesebyt.MainActivity.Companion.currentIndex
-import com.example.cheesebyt.MainActivity.Companion.pageTitle
 import com.example.cheesebyt.MainActivity.Companion.searchIndex
-import com.example.cheesebyt.R
-import com.example.cheesebyt.cheeseList.CheeseListAdapter
-import com.example.cheesebyt.cheeseList.CheeseListItem
-import com.example.cheesebyt.cheeseList.CheeseListViewModel
 import com.example.cheesebyt.databinding.FragmentCheeseBinding
-import com.example.cheesebyt.databinding.FragmentCheeseListBinding
 import com.example.cheesebyt.review.ReviewPostFragment
 import com.squareup.picasso.Picasso
 
@@ -111,8 +104,7 @@ class CheeseFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        pageTitle = searchIndex.last()
-        (context as AppCompatActivity).supportActionBar!!.title = pageTitle
+        (context as AppCompatActivity).supportActionBar!!.title = currentIndex.last()
         val dashboardViewModel =
             ViewModelProvider(this).get(CheeseViewModel::class.java)
 
@@ -126,7 +118,7 @@ class CheeseFragment : Fragment() {
             binding.cheesePrice.text = "$${it.cheesePrice.toString()}"
             binding.btnWriteReview.setOnClickListener {
                 searchIndex.add("Add Review")
-                currentIndex = searchIndex.size - 1
+                currentIndex = searchIndex
                 StateManager.getInstance().showFragment(SEARCH_ID, ReviewPostFragment())
             }
             binding.cheeseName.text = it.cheeseName
@@ -144,8 +136,7 @@ class CheeseFragment : Fragment() {
     override fun onHiddenChanged(hidden: Boolean) {
         super.onHiddenChanged(hidden)
         if (!hidden) {
-            pageTitle = searchIndex.last()
-            (context as AppCompatActivity).supportActionBar!!.title = pageTitle
+            (context as AppCompatActivity).supportActionBar!!.title = currentIndex.last()
         }
     }
 

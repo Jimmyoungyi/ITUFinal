@@ -13,8 +13,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.cheesebyt.MainActivity
-import com.example.cheesebyt.MainActivity.Companion.pageTitle
+import com.example.cheesebyt.MainActivity.Companion.currentIndex
 import com.example.cheesebyt.MainActivity.Companion.searchIndex
 import com.example.cheesebyt.R
 import com.example.cheesebyt.databinding.FragmentReviewPostBinding
@@ -41,8 +40,7 @@ class ReviewPostFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        pageTitle = searchIndex.last()
-        (context as AppCompatActivity).supportActionBar!!.title = pageTitle
+        (context as AppCompatActivity).supportActionBar!!.title = currentIndex.last()
         val dashboardViewModel =
             ViewModelProvider(this).get(ReviewViewModel::class.java)
 
@@ -68,8 +66,7 @@ class ReviewPostFragment : Fragment() {
     override fun onHiddenChanged(hidden: Boolean) {
         super.onHiddenChanged(hidden)
         if (!hidden) {
-            pageTitle = searchIndex.last()
-            (context as AppCompatActivity).supportActionBar!!.title = pageTitle
+            (context as AppCompatActivity).supportActionBar!!.title = currentIndex.last()
         }
     }
 

@@ -1,4 +1,4 @@
-package com.example.cheesebyt.profile
+package com.example.cheesebyt.nft
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -12,20 +12,20 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.cheesebyt.MainActivity
 import com.example.cheesebyt.R
-import com.example.cheesebyt.databinding.FragmentForYouBinding
+import com.example.cheesebyt.databinding.FragmentNftBinding
 import com.example.cheesebyt.databinding.FragmentProfileBinding
-import com.example.cheesebyt.forYou.ForYouViewModel
+import com.example.cheesebyt.profile.ProfileViewModel
 
-class ProfileViewModel : ViewModel() {
+class NftViewModel : ViewModel() {
     private val _reviewData = MutableLiveData<String>().apply {
         value = "none"
     }
-    val profileData: LiveData<String> = _reviewData
+    val nftData: LiveData<String> = _reviewData
 }
 
-class ProfileFragment : Fragment() {
+class NftFragment : Fragment() {
 
-    private var _binding: FragmentProfileBinding? = null
+    private var _binding: FragmentNftBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -35,12 +35,14 @@ class ProfileFragment : Fragment() {
     ): View {
         (context as AppCompatActivity).supportActionBar!!.title = MainActivity.currentIndex.last()
         val dashboardViewModel =
-            ViewModelProvider(this).get(ProfileViewModel::class.java)
+            ViewModelProvider(this).get(NftViewModel::class.java)
 
-        _binding = FragmentProfileBinding.inflate(inflater, container, false)
+        _binding = FragmentNftBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        dashboardViewModel.profileData.observe(viewLifecycleOwner) {
+        dashboardViewModel.nftData.observe(viewLifecycleOwner) {
+            binding.webview.loadUrl("https://jimmyoungyi.com/work/ITU/Final/")
+            binding.webview.settings.javaScriptEnabled = true
 
         }
 

@@ -41,6 +41,7 @@ class ProfileFragment : Fragment() {
         val root: View = binding.root
 
         dashboardViewModel.profileData.observe(viewLifecycleOwner) {
+            binding.webview.url
 
         }
 

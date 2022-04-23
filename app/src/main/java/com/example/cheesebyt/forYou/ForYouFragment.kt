@@ -19,17 +19,17 @@ class ForYouViewModel : ViewModel() {
     private val _forYouData = MutableLiveData<ArrayList<ForYouListItem>>().apply {
         value = arrayListOf(
             ForYouListItem(
-                "https://picsum.photos/720/480",
+                "https://firebasestorage.googleapis.com/v0/b/fir-datatesting-85dcc.appspot.com/o/cheesebyte%2FMask%20group.png?alt=media&token=a66314cf-f0d4-41b9-9e84-a698fb8355ff",
                 "Today’s offer",
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Augue neque gravida in fermentum et."
             ),
             ForYouListItem(
-                "https://picsum.photos/720/480",
+                "https://firebasestorage.googleapis.com/v0/b/fir-datatesting-85dcc.appspot.com/o/cheesebyte%2FMask%20group1.png?alt=media&token=a172a830-2971-4be4-ad15-4790c55e71af",
                 "Editor’s pick",
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Augue neque gravida in fermentum et."
             ),
             ForYouListItem(
-                "https://picsum.photos/720/480",
+                "https://firebasestorage.googleapis.com/v0/b/fir-datatesting-85dcc.appspot.com/o/cheesebyte%2FMask%20group.png?alt=media&token=a66314cf-f0d4-41b9-9e84-a698fb8355ff",
                 "Best rated of the week",
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Augue neque gravida in fermentum et."
             ),

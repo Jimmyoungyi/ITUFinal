@@ -24,17 +24,15 @@ class CheeseListViewModel : ViewModel() {
             CheeseListItem(
                 "Cheddar",
                 "https://picsum.photos/360/180",
-                "https://picsum.photos/80/80",
                 4.50f,
-                48f,
+                7.99f,
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
             ),
             CheeseListItem(
-                "Cheese Name",
+                "Gouda",
                 "https://picsum.photos/360/180",
-                "https://picsum.photos/80/80",
                 4.50f,
-                48f,
+                9.99f,
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
             )
         )

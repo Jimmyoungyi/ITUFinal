@@ -26,16 +26,14 @@ class CheeseListAdapter (
 
         val cheeseName: TextView = view.findViewById(R.id.cheeseName)
         val cheeseBkImage: ImageView = view.findViewById(R.id.cheeseBkImage)
-        val cheeseIconImage: ImageView = view.findViewById(R.id.cheeseIconImage)
         val cheeseRate: RatingBar = view.findViewById(R.id.cheeseRate)
         val cheesePrice: TextView = view.findViewById(R.id.cheesePrice)
         val cheeseDescription: TextView = view.findViewById(R.id.cheeseDescription)
 
         cheeseName.text = arrayList[position].cheeseName
-        Picasso.get().load(arrayList[position].cheeseBkImage).into(cheeseBkImage);
-        Picasso.get().load(arrayList[position].cheeseIconImage).into(cheeseIconImage);
+        Picasso.get().load(arrayList[position].cheeseBkImage).into(cheeseBkImage)
         cheeseRate.rating = arrayList[position].cheeseRate
-        cheesePrice.text = "$" + arrayList[position].cheesePrice.toString()
+        cheesePrice.text = "Price: $" + arrayList[position].cheesePrice.toString()
         cheeseDescription.text = arrayList[position].cheeseDescription
 
         return view

@@ -16,6 +16,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:divider="@null"
+        android:dividerHeight="0dp"
         tools:listitem="@layout/cheese_list_item" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

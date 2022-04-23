@@ -10,11 +10,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.eu.fragmentstatemanager.StateManager
 import com.example.cheesebyt.MainActivity
 import com.example.cheesebyt.R
 import com.example.cheesebyt.databinding.FragmentCheesePointBinding
 import com.example.cheesebyt.databinding.FragmentForYouBinding
 import com.example.cheesebyt.forYou.ForYouViewModel
+import com.example.cheesebyt.nft.NftFragment
 
 class CheesePointViewModel : ViewModel() {
     private val _reviewData = MutableLiveData<String>().apply {
@@ -43,6 +45,10 @@ class CheesePointFragment : Fragment() {
 
         dashboardViewModel.cheesePointData.observe(viewLifecycleOwner) {
 
+            binding.nftButton.setOnClickListener {
+                StateManager.getInstance()
+                    .showFragment(MainActivity.currentPage, NftFragment())
+            }
         }
 
         return root

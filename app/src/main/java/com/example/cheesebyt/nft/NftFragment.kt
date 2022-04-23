@@ -43,6 +43,7 @@ class NftFragment : Fragment() {
         dashboardViewModel.nftData.observe(viewLifecycleOwner) {
             binding.webview.loadUrl("https://jimmyoungyi.com/work/ITU/Final/")
             binding.webview.settings.javaScriptEnabled = true
+            binding.webview.settings.setAppCacheEnabled(false)
 
         }
 

@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.eu.fragmentstatemanager.StateManager
 import com.example.cheesebyt.MainActivity
 import com.example.cheesebyt.MainActivity.Companion.currentIndex
+import com.example.cheesebyt.MainActivity.Companion.currentPage
 import com.example.cheesebyt.MainActivity.Companion.searchIndex
 import com.example.cheesebyt.cheeseList.CheeseListFragment
 import com.example.cheesebyt.databinding.FragmentSearchBinding
@@ -56,7 +57,7 @@ class SearchFragment : Fragment() {
             binding.cheeseTypeList.setOnItemClickListener { _, _, position, _ ->
                 currentIndex.add(it[position].name)
                 StateManager.getInstance()
-                    .showFragment(MainActivity.SEARCH_ID, CheeseListFragment())
+                    .showFragment(currentPage, CheeseListFragment())
             }
         }
 

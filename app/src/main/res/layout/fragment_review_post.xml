@@ -13,15 +13,10 @@
         <RatingBar
             android:layout_marginTop="24dp"
             android:layout_width="wrap_content"
+            android:progressTint="@color/purple_500"
             android:layout_height="wrap_content"/>
-        <ImageView
-            android:id="@+id/postAddImage"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="24dp"
-            android:layout_gravity="left"/>
         <EditText
+            android:background="@drawable/background_with_shadow"
             android:layout_marginTop="24dp"
             android:layout_marginRight="24dp"
             android:layout_marginLeft="24dp"

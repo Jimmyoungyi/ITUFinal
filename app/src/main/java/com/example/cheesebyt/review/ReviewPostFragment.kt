@@ -13,11 +13,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.eu.fragmentstatemanager.StateManager
 import com.example.cheesebyt.MainActivity.Companion.currentIndex
-import com.example.cheesebyt.MainActivity.Companion.searchIndex
+import com.example.cheesebyt.MainActivity.Companion.currentPage
 import com.example.cheesebyt.R
+import com.example.cheesebyt.cheesePoints.CheesePointFragment
 import com.example.cheesebyt.databinding.FragmentReviewPostBinding
-import com.squareup.picasso.Picasso
 
 
 class ReviewViewModel : ViewModel() {
@@ -50,12 +51,6 @@ class ReviewPostFragment : Fragment() {
 
         dashboardViewModel.cheeseData.observe(viewLifecycleOwner) {
 
-            Picasso.get()
-                .load("https://firebasestorage.googleapis.com/v0/b/fir-datatesting-85dcc.appspot.com/o/cheesebyte%2FaddImage.png?alt=media&token=9ddecbdf-34e7-4feb-a65e-1410d7d36a7a")
-                .into(binding.postAddImage)
-            binding.postAddImage.setOnClickListener {
-                Log.v("updateImage", "update start")
-            }
             binding.submitPostBtn.setOnClickListener {
                 createRewardPopWindow()
             }
@@ -85,8 +80,9 @@ class ReviewPostFragment : Fragment() {
 
         val collectButton = popView.findViewById<Button>(R.id.collectRewardBtn)
         collectButton.setOnClickListener {
-
-            Log.v("collectPoints","jump")
+            StateManager.getInstance()
+                .showFragment(currentPage, CheesePointFragment())
+            dialog.dismiss()
         }
 
     }

@@ -12,9 +12,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.eu.fragmentstatemanager.StateManager
+import com.example.cheesebyt.MainActivity
 import com.example.cheesebyt.MainActivity.Companion.SEARCH_ID
 import com.example.cheesebyt.MainActivity.Companion.currentIndex
-import com.example.cheesebyt.MainActivity.Companion.searchIndex
+import com.example.cheesebyt.MainActivity.Companion.currentPage
 import com.example.cheesebyt.databinding.FragmentCheeseBinding
 import com.example.cheesebyt.review.ReviewPostFragment
 import com.squareup.picasso.Picasso
@@ -131,7 +132,7 @@ class CheeseFragment : Fragment() {
             binding.cheeseRateBar.rating = it.cheeseRate
             binding.cheesePrice.text = "$${it.cheesePrice.toString()}"
             binding.btnWriteReview.setOnClickListener {
-                StateManager.getInstance().showFragment(SEARCH_ID, ReviewPostFragment())
+                StateManager.getInstance().showFragment(currentPage, ReviewPostFragment())
             }
             binding.cheeseName.text = it.cheeseName
             binding.whatIsCheeseName.text = "WHAT IS ${it.cheeseName}"
@@ -143,7 +144,7 @@ class CheeseFragment : Fragment() {
             binding.primaryRateText.text = it.cheeseRate.toString()
             binding.primaryRateBar.rating = it.cheeseRate
             binding.btnWriteReview2.setOnClickListener {
-                StateManager.getInstance().showFragment(SEARCH_ID, ReviewPostFragment())
+                StateManager.getInstance().showFragment(currentPage, ReviewPostFragment())
             }
 
             binding.userReviewName.text = it.reviews.get(0).userName

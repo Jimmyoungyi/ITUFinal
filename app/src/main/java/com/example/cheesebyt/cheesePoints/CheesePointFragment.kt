@@ -23,7 +23,7 @@ class CheesePointViewModel : ViewModel() {
     val cheesePointData: LiveData<String> = _reviewData
 }
 
-class cheesePointFragment : Fragment() {
+class CheesePointFragment : Fragment() {
 
     private var _binding: FragmentCheesePointBinding? = null
     private val binding get() = _binding!!

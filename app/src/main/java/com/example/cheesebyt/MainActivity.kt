@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity() {
 
     companion object {
         const val FOR_YOU_ID = 111111
-        var forYouIndex: ArrayList<String> = arrayListOf("For You")
+        var forYouIndex: ArrayList<String> = arrayListOf("Picked For You")
         const val SEARCH_ID = 111112
         var searchIndex: ArrayList<String> = arrayListOf("Search")
         const val CAMERA_ID = 111113

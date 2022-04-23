@@ -23,14 +23,14 @@ class CheeseListViewModel : ViewModel() {
         value = arrayListOf(
             CheeseListItem(
                 "Cheddar",
-                "https://picsum.photos/360/180",
+                "https://firebasestorage.googleapis.com/v0/b/fir-datatesting-85dcc.appspot.com/o/cheesebyte%2FCheddar.png?alt=media&token=fd205e30-7eac-4a06-ab3c-1b03a795d983",
                 4.50f,
                 7.99f,
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
             ),
             CheeseListItem(
                 "Gouda",
-                "https://picsum.photos/360/180",
+                "https://firebasestorage.googleapis.com/v0/b/fir-datatesting-85dcc.appspot.com/o/cheesebyte%2FCheddar.png?alt=media&token=fd205e30-7eac-4a06-ab3c-1b03a795d983",
                 4.50f,
                 9.99f,
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit."

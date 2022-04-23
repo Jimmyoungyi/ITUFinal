@@ -24,39 +24,43 @@ class CheeseViewModel : ViewModel() {
         value = Cheese(
             "1234",
             "Cheddar ",
-            "https://picsum.photos/400/300",
+            "https://firebasestorage.googleapis.com/v0/b/fir-datatesting-85dcc.appspot.com/o/cheesebyte%2FCheddar.png?alt=media&token=fd205e30-7eac-4a06-ab3c-1b03a795d983",
             4.5f,
             7.99f,
             "Celebrated in a wide span of culinary cultures, Gouda has its roots in the southern regions of the Netherlands. Typically made from cow’s milk, this semi-hard cheese is characterized by its aromatic and caramel-like flavor combined with its dense and springy texture. Hints of nuts with sweet and creamy notes embrace your palate in a graceful sensation and, depending on the age, the finish ranges from smooth to sharp.",
             "In all aspects, Cheddar boasts immense versatility, meaning that the process of making it has endured many adoptions and variations. Common to all, however, is the process known as Cheddaring, in which loaves of curd are stacked on top of one another, causing excess whey to drain off. It is during this continual layering that the cheese begins to develop its characteristic flavor and texture.\n\nDepending on the type of Cheddar, aging will take a minimum of two months and up to two years for Castello Extra Mature Cheese. During this period, the texture goes from smooth to crumbly, while flavors take on notes of hazelnut, and sharpen in aftertaste.",
             arrayListOf(
                 SubSlideItem(
-                    "https://picsum.photos/180/200",
+                    "https://firebasestorage.googleapis.com/v0/b/fir-datatesting-85dcc.appspot.com/o/cheesebyte%2Fwine1Image1.png?alt=media&token=a71b0535-82fe-40f6-9c7d-b5ed37746794",
                     "Wine Name"
                 ),
                 SubSlideItem(
-                    "https://picsum.photos/180/200",
+                    "https://firebasestorage.googleapis.com/v0/b/fir-datatesting-85dcc.appspot.com/o/cheesebyte%2Fwin2Image.png?alt=media&token=9da9661b-b6b3-4aad-9a67-952c020f4798",
                     "Wine Name"
                 ),
                 SubSlideItem(
-                    "https://picsum.photos/180/200",
+                    "https://firebasestorage.googleapis.com/v0/b/fir-datatesting-85dcc.appspot.com/o/cheesebyte%2Fwine1Image1.png?alt=media&token=a71b0535-82fe-40f6-9c7d-b5ed37746794",
                     "Wine Name"
                 ),
             ),
             arrayListOf(
                 SubSlideItem(
-                    "https://picsum.photos/180/100",
+                    "https://firebasestorage.googleapis.com/v0/b/fir-datatesting-85dcc.appspot.com/o/cheesebyte%2Frecipes1Image.png?alt=media&token=976060c2-4399-4d5d-8866-1d84256c2bef",
                     "Spicy Tapas Sticks"
                 ),
                 SubSlideItem(
-                    "https://picsum.photos/180/100",
+                    "https://firebasestorage.googleapis.com/v0/b/fir-datatesting-85dcc.appspot.com/o/cheesebyte%2Frecipes2Image.png?alt=media&token=51d0a10a-891d-4aba-a177-5f9c5afe48c0",
+                    "Heart Salad Boats with Gouda & Mango Chutney"
+                ),
+                SubSlideItem(
+                    "https://firebasestorage.googleapis.com/v0/b/fir-datatesting-85dcc.appspot.com/o/cheesebyte%2Frecipes1Image.png?alt=media&token=976060c2-4399-4d5d-8866-1d84256c2bef",
                     "Heart Salad Boats with Gouda & Mango Chutney"
                 ),
             ),
             arrayListOf(
                 ReviewListItem(
-                    "User xyz",
-                    4.5f,
+                    "User 1",
+                    5f,
                     arrayListOf(
                         "https://picsum.photos/200/200",
                         "https://picsum.photos/200/200",
@@ -65,7 +69,17 @@ class CheeseViewModel : ViewModel() {
                     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
                 ),
                 ReviewListItem(
-                    "User xyz",
+                    "User 2",
+                    4f,
+                    arrayListOf(
+                        "https://picsum.photos/200/200",
+                        "https://picsum.photos/200/200",
+                        "https://picsum.photos/200/200",
+                    ),
+                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
+                ),
+                ReviewListItem(
+                    "User 3",
                     4.5f,
                     arrayListOf(
                         "https://picsum.photos/200/200",
@@ -77,15 +91,15 @@ class CheeseViewModel : ViewModel() {
             ),
             arrayListOf(
                 SubSlideItem(
-                    "https://picsum.photos/100/80",
+                    "https://firebasestorage.googleapis.com/v0/b/fir-datatesting-85dcc.appspot.com/o/cheesebyte%2FScreen%20Shot%202022-03-24%20at%2013.54%201.png?alt=media&token=92bc69c2-41aa-42ec-b3b2-6f354669c86e",
                     "Gouda"
                 ),
                 SubSlideItem(
-                    "https://picsum.photos/100/80",
+                    "https://firebasestorage.googleapis.com/v0/b/fir-datatesting-85dcc.appspot.com/o/cheesebyte%2FScreen%20Shot%202022-03-24%20at%2013.54%201.png?alt=media&token=92bc69c2-41aa-42ec-b3b2-6f354669c86e",
                     "Gouda"
                 ),
                 SubSlideItem(
-                    "https://picsum.photos/100/80",
+                    "https://firebasestorage.googleapis.com/v0/b/fir-datatesting-85dcc.appspot.com/o/cheesebyte%2FScreen%20Shot%202022-03-24%20at%2013.54%201.png?alt=media&token=92bc69c2-41aa-42ec-b3b2-6f354669c86e",
                     "Gouda"
                 ),
             )
@@ -125,6 +139,26 @@ class CheeseFragment : Fragment() {
 
             binding.cheeseWineList.adapter = CheeseWineListAdapter(it.wineParing)
             binding.cheeseRecipeList.adapter = CheeseRecipeListAdapter(it.Recipes)
+
+            binding.primaryRateText.text = it.cheeseRate.toString()
+            binding.primaryRateBar.rating = it.cheeseRate
+            binding.btnWriteReview2.setOnClickListener {
+                StateManager.getInstance().showFragment(SEARCH_ID, ReviewPostFragment())
+            }
+
+            binding.userReviewName.text = it.reviews.get(0).userName
+            binding.userReviewRateBar.rating = it.reviews.get(0).rate
+            binding.userReviewDetail.text = it.reviews.get(0).content
+
+            binding.userReviewName1.text = it.reviews.get(1).userName
+            binding.userReviewRateBar1.rating = it.reviews.get(1).rate
+            binding.userReviewDetail1.text = it.reviews.get(1).content
+
+            binding.userReviewName2.text = it.reviews.get(2).userName
+            binding.userReviewRateBar2.rating = it.reviews.get(2).rate
+            binding.userReviewDetail2.text = it.reviews.get(2).content
+
+            binding.substituteList.adapter = CheeseRecipeListAdapter(it.substitute)
 
         }
 
